@@ -81,6 +81,7 @@ class JWTManager
      */
     public function refresh(Token $token)
     {
+        $this->payloadFactory->setRefreshFlow()
         $payload = $this->decode($token);
 
         if ($this->blacklistEnabled) {
@@ -90,7 +91,7 @@ class JWTManager
 
         // return the new token
         return $this->encode(
-            $this->payloadFactory->setRefreshFlow()->make([
+            $this->payloadFactory->make([
                 'sub' => $payload['sub'],
                 'iat' => $payload['iat']
             ])
