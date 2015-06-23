@@ -81,7 +81,7 @@ class JWTManager
      */
     public function refresh(Token $token)
     {
-        $this->payloadFactory->setRefreshFlow()
+        $this->payloadFactory->setRefreshFlow();
         $payload = $this->decode($token);
 
         if ($this->blacklistEnabled) {
